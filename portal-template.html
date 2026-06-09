@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAYARAS PISO WIFI - Portal</title>
+    <style>
+        /* ============================================
+           BAYARAS PISO WIFI PORTAL - CSS STYLING
+           ============================================ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Container & Background */
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .bg-layer {
+            width: 100%;
+            max-width: 600px;
+            height: 100vh;
+            background-image: url('Background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 20px;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.3);
+        }
+
+        /* ============================================
+           HEADER / LOGO
+           ============================================ */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 90%;
+            height: auto;
+            max-height: 120px;
+            object-fit: contain;
+        }
+
+        /* ============================================
+           TOP INFO SECTION (Credits & Timer)
+           ============================================ */
+        .top-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 80px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid #00ff00;
+        }
+
+        .credits-box,
+        .timer-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+        }
+
+        .credits-label,
+        .timer-label {
+            font-size: 12px;
+            color: #00ff00;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credits-value,
+        .timer-value {
+            font-size: 36px;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        /* ============================================
+           CONNECTION STATUS
+           ============================================ */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #00ff00;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 5px #00ff00;
+            }
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 15px #00ff00;
+            }
+        }
+
+        /* ============================================
+           BOTTOM BUTTON AREA
+           ============================================ */
+        .bottom-area {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Button General Styling */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .btn span {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* INSERT MONEY BUTTON - Orange/Yellow */
+        .insert-btn {
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            color: #000;
+            text-shadow: none;
+        }
+
+        .insert-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.6);
+        }
+
+        /* PAUSE TIME BUTTON - Red */
+        .pause-btn {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .pause-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 68, 68, 0.6);
+        }
+
+        /* WIFI RATES BUTTON - Black */
+        .wifi-rates-btn {
+            background: linear-gradient(135deg, #333333, #000000);
+            color: #fff;
+            border: 2px solid #666;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .wifi-rates-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+            border-color: #999;
+        }
+
+        /* CHATBOX BUTTON - Blue */
+        .chatbox-btn {
+            background: linear-gradient(135deg, #0088ff, #0055cc);
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .chatbox-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 136, 255, 0.6);
+        }
+
+        /* Button Active State */
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ============================================
+           FOOTER INFO
+           ============================================ */
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            font-size: 11px;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+        }
+
+        .footer-text {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .footer-location {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .footer-credit {
+            font-size: 9px;
+            opacity: 0.8;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .bg-layer {
+                padding: 30px 15px;
+            }
+
+            .logo {
+                max-height: 100px;
+            }
+
+            .top-info {
+                margin-bottom: 60px;
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .credits-value,
+            .timer-value {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 12px 15px;
+                font-size: 14px;
+                gap: 8px;
+            }
+
+            .btn img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bg-layer {
+                padding: 20px 10px;
+            }
+
+            .header {
+                margin-bottom: 20px;
+            }
+
+            .top-info {
+                margin-bottom: 40px;
+                gap: 8px;
+                padding: 12px;
+                grid-template-columns: 1fr;
+            }
+
+            .credits-label,
+            .timer-label {
+                font-size: 10px;
+            }
+
+            .credits-value,
+            .timer-value {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 10px 12px;
+                font-size: 12px;
+                gap: 6px;
+            }
+
+            .btn img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .footer-info {
+                padding: 10px;
+                gap: 5px;
+                font-size: 9px;
+            }
+
+            .footer-text {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BACKGROUND / MAIN DESIGN -->
+    <div class="container">
+        <div class="bg-layer">
+            <!-- HEADER / LOGO AREA -->
+            <div class="header">
+                <img src="Bayaras Piso wifi Headings1 copy.png" alt="BAYARAS PISO WIFI" class="logo">
+            </div>
+
+            <!-- TOP INFO SECTION -->
+            <div class="top-info">
+                <div class="credits-box">
+                    <span class="credits-label">CREDITS</span>
+                    <span class="credits-value">₱{{ remainingcredit }}</span>
+                </div>
+
+                <div class="timer-box">
+                    <span class="timer-label">REMAINING TIME</span>
+                    <span class="timer-value">{{ getUserremainingTime | raw }}</span>
+                </div>
+            </div>
+
+            <!-- CONNECTION STATUS -->
+            <div class="connection-status">
+                <span class="status-dot"></span>
+                <span class="status-text">CONNECTED</span>
+            </div>
+
+            <!-- BOTTOM BUTTON AREA -->
+            <div class="bottom-area">
+                {% if insertcoin == 1 %}
+                <button id="insert_coin_button" class="btn insert-btn">
+                    <img src="Insert money1 copy.png" alt="Insert Money">
+                    <span>INSERT MONEY</span>
+                </button>
+                {% endif %}
+
+                {% if pausetime == 1 %}
+                <button id="pfunc" class="btn pause-btn">
+                    <img src="Pause time1 copy.png" alt="Pause Time">
+                    <span>PAUSE TIME</span>
+                </button>
+                {% endif %}
+
+                <button class="btn wifi-rates-btn">
+                    <img src="pngegg (98).png" alt="WiFi Rates">
+                    <span>WIFI RATES</span>
+                </button>
+
+                <button class="btn chatbox-btn">
+                    <img src="chatbox1 copy.png" alt="Chatbox">
+                    <span>CHATBOX</span>
+                </button>
+            </div>
+
+            <!-- FOOTER INFO -->
+            <div class="footer-info">
+                <p class="footer-text">THE BEST CONNECTIONS WIFI MACHINE</p>
+                <p class="footer-location">BARANGAY 3, ROXAS PALAWAN</p>
+                <p class="footer-credit">Powered by RUSSELL ANDREW GONZALES SERVERS</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const insertCoinBtn = document.getElementById('insert_coin_button');
+        const pauseTimeBtn = document.getElementById('pfunc');
+        const wifiRatesBtn = document.querySelector('.wifi-rates-btn');
+        const chatboxBtn = document.querySelector('.chatbox-btn');
+
+        // Button Event Listeners
+        if (insertCoinBtn) {
+            insertCoinBtn.addEventListener('click', function() {
+                console.log('INSERT MONEY button clicked');
+                handleInsertCoin();
+            });
+        }
+
+        if (pauseTimeBtn) {
+            pauseTimeBtn.addEventListener('click', function() {
+                console.log('PAUSE TIME button clicked');
+                handlePauseTime();
+            });
+        }
+
+        if (wifiRatesBtn) {
+            wifiRatesBtn.addEventListener('click', function() {
+                console.log('WIFI RATES button clicked');
+                handleWifiRates();
+            });
+        }
+
+        if (chatboxBtn) {
+            chatboxBtn.addEventListener('click', function() {
+                console.log('CHATBOX button clicked');
+                handleChatbox();
+            });
+        }
+
+        // Button Functions
+        function handleInsertCoin() {
+            alert('Insert Money - Feature Coming Soon');
+        }
+
+        function handlePauseTime() {
+            alert('Pause Time - Feature Coming Soon');
+        }
+
+        function handleWifiRates() {
+            alert('WiFi Rates - Feature Coming Soon');
+        }
+
+        function handleChatbox() {
+            alert('Chatbox - Feature Coming Soon');
+        }
+
+        // Add Button Click Animation
+        function addClickAnimation(button) {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        }
+
+        // Apply animation to all buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            addClickAnimation(btn);
+        });
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('BAYARAS PISO WIFI Portal Loaded');
+        });
+    </script>
+</body>
+</html>
