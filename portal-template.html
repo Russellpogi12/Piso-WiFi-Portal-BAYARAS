@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAYARAS PISO WIFI - Portal</title>
     <style>
-        /* ============================================
-           BAYARAS PISO WIFI PORTAL - CSS STYLING
-           ============================================ */
-
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +17,6 @@
             background: #000;
         }
 
-        /* Container & Background */
         .container {
             width: 100%;
             height: 100vh;
@@ -35,21 +30,21 @@
             width: 100%;
             max-width: 600px;
             height: 100vh;
-            background-image: url('Background.png');
+            background-image: url('https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/Background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             padding: 40px 20px;
-            box-shadow: 0 0 50px rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.5),
+                        inset 0 0 80px rgba(0, 255, 0, 0.1);
+            border: 3px solid rgba(0, 255, 0, 0.3);
         }
 
-        /* ============================================
-           HEADER / LOGO
-           ============================================ */
         .header {
             display: flex;
             justify-content: center;
@@ -65,9 +60,6 @@
             object-fit: contain;
         }
 
-        /* ============================================
-           TOP INFO SECTION (Credits & Timer)
-           ============================================ */
         .top-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -109,9 +101,6 @@
             text-shadow: 0 0 10px #00ff00;
         }
 
-        /* ============================================
-           CONNECTION STATUS
-           ============================================ */
         .connection-status {
             display: flex;
             align-items: center;
@@ -143,9 +132,6 @@
             }
         }
 
-        /* ============================================
-           BOTTOM BUTTON AREA
-           ============================================ */
         .bottom-area {
             display: flex;
             flex-direction: column;
@@ -153,7 +139,6 @@
             margin-bottom: 20px;
         }
 
-        /* Button General Styling */
         .btn {
             display: flex;
             align-items: center;
@@ -177,6 +162,7 @@
             width: 30px;
             height: 30px;
             object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
         }
 
         .btn span {
@@ -184,64 +170,68 @@
             text-align: center;
         }
 
-        /* INSERT MONEY BUTTON - Orange/Yellow */
         .insert-btn {
             background: linear-gradient(135deg, #ffcc00, #ff9900);
             color: #000;
             text-shadow: none;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.5),
+                        0 0 20px rgba(255, 204, 0, 0.3);
         }
 
         .insert-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.6);
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.8),
+                        0 0 30px rgba(255, 204, 0, 0.5);
         }
 
-        /* PAUSE TIME BUTTON - Red */
         .pause-btn {
             background: linear-gradient(135deg, #ff4444, #cc0000);
             color: #fff;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.5),
+                        0 0 20px rgba(255, 68, 68, 0.3);
         }
 
         .pause-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 68, 68, 0.6);
+            box-shadow: 0 8px 20px rgba(255, 68, 68, 0.8),
+                        0 0 30px rgba(255, 68, 68, 0.5);
         }
 
-        /* WIFI RATES BUTTON - Black */
         .wifi-rates-btn {
             background: linear-gradient(135deg, #333333, #000000);
             color: #fff;
             border: 2px solid #666;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(100, 100, 100, 0.5),
+                        0 0 20px rgba(100, 100, 100, 0.3);
         }
 
         .wifi-rates-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.5),
+                        0 0 30px rgba(100, 100, 100, 0.5);
             border-color: #999;
         }
 
-        /* CHATBOX BUTTON - Blue */
         .chatbox-btn {
             background: linear-gradient(135deg, #0088ff, #0055cc);
             color: #fff;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 136, 255, 0.5),
+                        0 0 20px rgba(0, 136, 255, 0.3);
         }
 
         .chatbox-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 136, 255, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 136, 255, 0.8),
+                        0 0 30px rgba(0, 136, 255, 0.5);
         }
 
-        /* Button Active State */
         .btn:active {
             transform: scale(0.98);
         }
 
-        /* ============================================
-           FOOTER INFO
-           ============================================ */
         .footer-info {
             display: flex;
             flex-direction: column;
@@ -272,10 +262,6 @@
             font-size: 9px;
             opacity: 0.8;
         }
-
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
 
         @media (max-width: 768px) {
             .bg-layer {
@@ -359,15 +345,12 @@
     </style>
 </head>
 <body>
-    <!-- BACKGROUND / MAIN DESIGN -->
     <div class="container">
         <div class="bg-layer">
-            <!-- HEADER / LOGO AREA -->
             <div class="header">
-                <img src="Bayaras Piso wifi Headings1 copy.png" alt="BAYARAS PISO WIFI" class="logo">
+                <img src="https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/Bayaras%20Piso%20wifi%20Headings1%20copy.png" alt="BAYARAS PISO WIFI" class="logo">
             </div>
 
-            <!-- TOP INFO SECTION -->
             <div class="top-info">
                 <div class="credits-box">
                     <span class="credits-label">CREDITS</span>
@@ -380,40 +363,37 @@
                 </div>
             </div>
 
-            <!-- CONNECTION STATUS -->
             <div class="connection-status">
                 <span class="status-dot"></span>
                 <span class="status-text">CONNECTED</span>
             </div>
 
-            <!-- BOTTOM BUTTON AREA -->
             <div class="bottom-area">
                 {% if insertcoin == 1 %}
                 <button id="insert_coin_button" class="btn insert-btn">
-                    <img src="Insert money1 copy.png" alt="Insert Money">
+                    <img src="https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/Insert%20money1%20copy.png" alt="Insert Money">
                     <span>INSERT MONEY</span>
                 </button>
                 {% endif %}
 
                 {% if pausetime == 1 %}
                 <button id="pfunc" class="btn pause-btn">
-                    <img src="Pause time1 copy.png" alt="Pause Time">
+                    <img src="https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/Pause%20time1%20copy.png" alt="Pause Time">
                     <span>PAUSE TIME</span>
                 </button>
                 {% endif %}
 
                 <button class="btn wifi-rates-btn">
-                    <img src="pngegg (98).png" alt="WiFi Rates">
+                    <img src="https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/pngegg%20%2898%29.png" alt="WiFi Rates">
                     <span>WIFI RATES</span>
                 </button>
 
                 <button class="btn chatbox-btn">
-                    <img src="chatbox1 copy.png" alt="Chatbox">
+                    <img src="https://raw.githubusercontent.com/Russellpogi12/Piso-WiFi-Portal-BAYARAS/main-layout/chatbox1%20copy.png" alt="Chatbox">
                     <span>CHATBOX</span>
                 </button>
             </div>
 
-            <!-- FOOTER INFO -->
             <div class="footer-info">
                 <p class="footer-text">THE BEST CONNECTIONS WIFI MACHINE</p>
                 <p class="footer-location">BARANGAY 3, ROXAS PALAWAN</p>
@@ -423,42 +403,35 @@
     </div>
 
     <script>
-        // DOM Elements
         const insertCoinBtn = document.getElementById('insert_coin_button');
         const pauseTimeBtn = document.getElementById('pfunc');
         const wifiRatesBtn = document.querySelector('.wifi-rates-btn');
         const chatboxBtn = document.querySelector('.chatbox-btn');
 
-        // Button Event Listeners
         if (insertCoinBtn) {
             insertCoinBtn.addEventListener('click', function() {
-                console.log('INSERT MONEY button clicked');
                 handleInsertCoin();
             });
         }
 
         if (pauseTimeBtn) {
             pauseTimeBtn.addEventListener('click', function() {
-                console.log('PAUSE TIME button clicked');
                 handlePauseTime();
             });
         }
 
         if (wifiRatesBtn) {
             wifiRatesBtn.addEventListener('click', function() {
-                console.log('WIFI RATES button clicked');
                 handleWifiRates();
             });
         }
 
         if (chatboxBtn) {
             chatboxBtn.addEventListener('click', function() {
-                console.log('CHATBOX button clicked');
                 handleChatbox();
             });
         }
 
-        // Button Functions
         function handleInsertCoin() {
             alert('Insert Money - Feature Coming Soon');
         }
@@ -475,7 +448,6 @@
             alert('Chatbox - Feature Coming Soon');
         }
 
-        // Add Button Click Animation
         function addClickAnimation(button) {
             button.addEventListener('click', function() {
                 this.style.transform = 'scale(0.95)';
@@ -485,12 +457,10 @@
             });
         }
 
-        // Apply animation to all buttons
         document.querySelectorAll('.btn').forEach(btn => {
             addClickAnimation(btn);
         });
 
-        // Initialize App
         document.addEventListener('DOMContentLoaded', function() {
             console.log('BAYARAS PISO WIFI Portal Loaded');
         });
