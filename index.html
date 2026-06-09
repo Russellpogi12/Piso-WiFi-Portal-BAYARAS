@@ -3,72 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>BAYARAS PISO WIFI - Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- BACKGROUND / MAIN DESIGN -->
     <div class="container">
-        <div class="bg-layer">
-            <!-- HEADER / LOGO AREA -->
-            <div class="header">
-                <img src="Bayaras Piso wifi Headings1 copy.png" alt="BAYARAS PISO WIFI" class="logo">
-            </div>
-
-            <!-- TOP INFO SECTION -->
-            <div class="top-info">
-                <div class="credits-box">
-                    <span class="credits-label">CREDITS</span>
-                    <span class="credits-value">₱{{ remainingcredit }}</span>
-                </div>
-
-                <div class="timer-box">
-                    <span class="timer-label">REMAINING TIME</span>
-                    <span class="timer-value">{{ getUserremainingTime | raw }}</span>
+        <div class="portal-wrapper">
+            <!-- HEADER -->
+            <div class="header-section">
+                <div class="logo-area">
+                    <img src="Bayaras Piso wifi Headings1 copy.png" alt="BAYARAS PISO WIFI" class="logo">
                 </div>
             </div>
 
-            <!-- CONNECTION STATUS -->
-            <div class="connection-status">
-                <span class="status-dot"></span>
-                <span class="status-text">CONNECTED</span>
+            <!-- CAROUSEL/BANNER -->
+            <div class="carousel-section">
+                <div id="carousel-id" class="carousel">
+                    <img src="Background.png" alt="Banner" class="carousel-img">
+                </div>
             </div>
 
-            <!-- BOTTOM BUTTON AREA -->
-            <div class="bottom-area">
-                {% if insertcoin == 1 %}
-                <button id="insert_coin_button" class="btn insert-btn">
-                    <img src="Insert money1 copy.png" alt="Insert Money">
-                    <span>INSERT MONEY</span>
-                </button>
-                {% endif %}
-
-                {% if pausetime == 1 %}
-                <button id="pfunc" class="btn pause-btn">
-                    <img src="Pause time1 copy.png" alt="Pause Time">
-                    <span>PAUSE TIME</span>
-                </button>
-                {% endif %}
-
-                <button class="btn wifi-rates-btn">
-                    <img src="pngegg (98).png" alt="WiFi Rates">
-                    <span>WIFI RATES</span>
-                </button>
-
-                <button class="btn chatbox-btn">
-                    <img src="chatbox1 copy.png" alt="Chatbox">
-                    <span>CHATBOX</span>
-                </button>
+            <!-- ANNOUNCEMENT -->
+            <div class="announcement-section">
+                <div class="alert alert-announcement">
+                    <p id="portal-announcement">Welcome to BAYARAS PISO WIFI Portal</p>
+                </div>
             </div>
 
-            <!-- FOOTER INFO -->
-            <div class="footer-info">
+            <!-- STATUS SECTION -->
+            <div class="status-section">
+                <div class="status-box">
+                    <div class="status-item">
+                        <span class="status-label">Status:</span>
+                        <span class="status-value" id="connection-status">
+                            <i class="fas fa-circle status-dot"></i> CONNECTED
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USER INFO SECTION -->
+            <div class="user-info-section">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-network-wired"></i> IP:</span>
+                        <span class="info-value" id="user-ip">192.168.1.1</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-microchip"></i> MAC:</span>
+                        <span class="info-value" id="user-mac">00:00:00:00:00:00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-coins"></i> CREDITS:</span>
+                        <span class="info-value credits-highlight" id="user-credits">₱50.00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-clock"></i> TIME:</span>
+                        <span class="info-value time-highlight" id="remaining-time">00:00:00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-calendar-alt"></i> EXPIRE:</span>
+                        <span class="info-value" id="expire-time">N/A</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label"><i class="fas fa-info-circle"></i> INFO:</span>
+                        <span class="info-value" id="connection-info">Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN BUTTONS SECTION -->
+            <div class="buttons-section">
+                <!-- Insert Money Button -->
+                <button id="insert_coin_button" class="portal-btn btn-insert-money" title="Insert Money">
+                    <div class="btn-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">INSERT MONEY</span>
+                        <span class="btn-desc">Add Credits</span>
+                    </div>
+                </button>
+
+                <!-- Pause Time Button -->
+                <button id="pfunc" class="portal-btn btn-pause-time" title="Pause Time">
+                    <div class="btn-icon">
+                        <i class="fas fa-pause-circle"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">PAUSE TIME</span>
+                        <span class="btn-desc">Pause Connection</span>
+                    </div>
+                </button>
+
+                <!-- WiFi Rates Button -->
+                <button id="wifi_rates_button" class="portal-btn btn-wifi-rates" title="WiFi Rates">
+                    <div class="btn-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">WIFI RATES</span>
+                        <span class="btn-desc">View Plans</span>
+                    </div>
+                </button>
+
+                <!-- Chatbox Button -->
+                <button id="chatbox_button" class="portal-btn btn-chatbox" title="Chatbox">
+                    <div class="btn-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">CHATBOX</span>
+                        <span class="btn-desc">Support Chat</span>
+                    </div>
+                </button>
+
+                <!-- Buy Load Button -->
+                <button id="buyload_button" class="portal-btn btn-buyload" title="Buy Load">
+                    <div class="btn-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">BUY LOAD</span>
+                        <span class="btn-desc">Mobile Load</span>
+                    </div>
+                </button>
+
+                <!-- Check Balance Button -->
+                <button id="checkbalance_button" class="portal-btn btn-checkbalance" title="Check Balance">
+                    <div class="btn-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="btn-content">
+                        <span class="btn-label">CHECK BALANCE</span>
+                        <span class="btn-desc">Balance Inquiry</span>
+                    </div>
+                </button>
+
+                <!-- Voucher Input -->
+                <div class="voucher-input-section">
+                    <div class="input-group">
+                        <input type="text" id="voucher-code" class="voucher-input" placeholder="Enter Voucher Code...">
+                        <button id="submit-voucher" class="voucher-btn">
+                            <i class="fas fa-ticket-alt"></i> Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer-section">
                 <p class="footer-text">THE BEST CONNECTIONS WIFI MACHINE</p>
                 <p class="footer-location">BARANGAY 3, ROXAS PALAWAN</p>
                 <p class="footer-credit">Powered by RUSSELL ANDREW GONZALES SERVERS</p>
             </div>
         </div>
     </div>
+
+    <!-- ====================================
+         MODALS
+         ==================================== -->
+
+    <!-- INSERT MONEY MODAL -->
+    <div id="insert-money-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-insert-money">
+            <div class="modal-header">
+                <h2><i class="fas fa-money-bill-wave"></i> INSERT MONEY</h2>
+                <button class="modal-close" onclick="closeModal('insert-money-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-instruction">Select amount to add:</p>
+                <div class="payment-buttons-grid">
+                    <button class="payment-btn" onclick="addCredits(10)">
+                        <span class="amount">₱10</span>
+                        <span class="action">Add</span>
+                    </button>
+                    <button class="payment-btn" onclick="addCredits(20)">
+                        <span class="amount">₱20</span>
+                        <span class="action">Add</span>
+                    </button>
+                    <button class="payment-btn" onclick="addCredits(50)">
+                        <span class="amount">₱50</span>
+                        <span class="action">Add</span>
+                    </button>
+                    <button class="payment-btn" onclick="addCredits(100)">
+                        <span class="amount">₱100</span>
+                        <span class="action">Add</span>
+                    </button>
+                </div>
+                <div class="custom-amount-section">
+                    <h4>Custom Amount:</h4>
+                    <div class="custom-input-group">
+                        <input type="number" id="custom-amount-input" placeholder="Enter amount (₱1 - ₱500)" min="1" max="500">
+                        <button class="payment-btn btn-custom" onclick="addCustomCredits()">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-info-box">
+                    <p><strong>Current Balance:</strong> <span id="modal-credits">₱50.00</span></p>
+                    <p class="info-note"><i class="fas fa-info-circle"></i> Insert coins into the machine to add credits</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WIFI RATES MODAL -->
+    <div id="wifi-rates-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-wifi-rates">
+            <div class="modal-header">
+                <h2><i class="fas fa-wifi"></i> WIFI RATES & PLANS</h2>
+                <button class="modal-close" onclick="closeModal('wifi-rates-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="rates-grid">
+                    <div class="rate-card">
+                        <div class="rate-duration">30 MIN</div>
+                        <div class="rate-price">₱10</div>
+                        <div class="rate-speed">High Speed</div>
+                        <button class="rate-buy-btn" onclick="buyPlan(10, 30)">BUY NOW</button>
+                    </div>
+                    <div class="rate-card">
+                        <div class="rate-duration">1 HOUR</div>
+                        <div class="rate-price">₱20</div>
+                        <div class="rate-speed">High Speed</div>
+                        <button class="rate-buy-btn" onclick="buyPlan(20, 60)">BUY NOW</button>
+                    </div>
+                    <div class="rate-card featured">
+                        <div class="rate-badge">BEST DEAL</div>
+                        <div class="rate-duration">3 HOURS</div>
+                        <div class="rate-price">₱50</div>
+                        <div class="rate-speed">Ultra High Speed</div>
+                        <button class="rate-buy-btn" onclick="buyPlan(50, 180)">BUY NOW</button>
+                    </div>
+                    <div class="rate-card">
+                        <div class="rate-duration">24 HOURS</div>
+                        <div class="rate-price">₱100</div>
+                        <div class="rate-speed">Ultra High Speed</div>
+                        <button class="rate-buy-btn" onclick="buyPlan(100, 1440)">BUY NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHATBOX MODAL -->
+    <div id="chatbox-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-chatbox">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> SUPPORT CHAT</h2>
+                <button class="modal-close" onclick="closeModal('chatbox-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="chat-message bot-message">
+                            <div class="message-avatar">BOT</div>
+                            <div class="message-text">Hello! Welcome to BAYARAS PISO WIFI Support. How can we help you?</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-section">
+                    <div class="input-group">
+                        <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
+                        <button class="chat-send-btn" onclick="sendChatMessage()">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAUSE TIME CONFIRMATION MODAL -->
+    <div id="pause-confirmation-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-pause">
+            <div class="modal-header">
+                <h2><i class="fas fa-pause-circle"></i> PAUSE TIME</h2>
+                <button class="modal-close" onclick="closeModal('pause-confirmation-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="pause-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <p class="pause-message">Are you sure you want to pause your internet connection?</p>
+                <p class="pause-info">Your remaining time will be saved and can be resumed anytime.</p>
+                <div class="pause-buttons-group">
+                    <button class="btn-confirm btn-yes" onclick="confirmPause()">
+                        <i class="fas fa-check"></i> YES, PAUSE IT
+                    </button>
+                    <button class="btn-confirm btn-no" onclick="closeModal('pause-confirmation-modal')">
+                        <i class="fas fa-times"></i> NO, CANCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUY LOAD MODAL -->
+    <div id="buyload-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-buyload">
+            <div class="modal-header">
+                <h2><i class="fas fa-mobile-alt"></i> BUY LOAD</h2>
+                <button class="modal-close" onclick="closeModal('buyload-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="phone-number">Enter Mobile Number:</label>
+                    <input type="text" id="phone-number" placeholder="09xxxxxxxxx" maxlength="11" class="form-input">
+                </div>
+                <div class="load-packages">
+                    <h4>Select Load Package:</h4>
+                    <div class="packages-grid">
+                        <button class="package-btn" onclick="selectLoadPackage(50, 'Load 50')">
+                            <span class="pkg-amount">₱50</span>
+                            <span class="pkg-name">Load 50</span>
+                        </button>
+                        <button class="package-btn" onclick="selectLoadPackage(100, 'Load 100')">
+                            <span class="pkg-amount">₱100</span>
+                            <span class="pkg-name">Load 100</span>
+                        </button>
+                        <button class="package-btn" onclick="selectLoadPackage(300, 'Load 300')">
+                            <span class="pkg-amount">₱300</span>
+                            <span class="pkg-name">Load 300</span>
+                        </button>
+                        <button class="package-btn" onclick="selectLoadPackage(500, 'Load 500')">
+                            <span class="pkg-amount">₱500</span>
+                            <span class="pkg-name">Load 500</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-action">
+                    <button class="action-btn btn-submit" onclick="buyLoad()">
+                        <i class="fas fa-check"></i> BUY NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECK BALANCE MODAL -->
+    <div id="checkbalance-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-checkbalance">
+            <div class="modal-header">
+                <h2><i class="fas fa-credit-card"></i> CHECK BALANCE</h2>
+                <button class="modal-close" onclick="closeModal('checkbalance-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="balance-phone">Enter Mobile Number:</label>
+                    <input type="text" id="balance-phone" placeholder="09xxxxxxxxx" maxlength="11" class="form-input">
+                </div>
+                <div class="modal-action">
+                    <button class="action-btn btn-submit" onclick="checkBalance()">
+                        <i class="fas fa-search"></i> CHECK BALANCE
+                    </button>
+                </div>
+                <div class="balance-result" id="balance-result" style="display:none;">
+                    <p>Balance: <span id="balance-amount">₱0.00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL OVERLAY BACKDROP -->
+    <div id="modal-overlay-backdrop" class="modal-overlay-backdrop" onclick="closeAllModals()"></div>
+
+    <!-- Audio element for coin sound -->
+    <audio id="coin-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQIAAAAAAA==" type="audio/wav">
+    </audio>
 
     <script src="js/script.js"></script>
 </body>
