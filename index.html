@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAYARAS PISO WIFI - Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- BACKGROUND / MAIN DESIGN -->
+    <div class="container">
+        <div class="bg-layer">
+            <!-- HEADER / LOGO AREA -->
+            <div class="header">
+                <img src="Bayaras Piso wifi Headings1 copy.png" alt="BAYARAS PISO WIFI" class="logo">
+            </div>
+
+            <!-- TOP INFO SECTION -->
+            <div class="top-info">
+                <div class="credits-box">
+                    <span class="credits-label">CREDITS</span>
+                    <span class="credits-value">₱{{ remainingcredit }}</span>
+                </div>
+
+                <div class="timer-box">
+                    <span class="timer-label">REMAINING TIME</span>
+                    <span class="timer-value">{{ getUserremainingTime | raw }}</span>
+                </div>
+            </div>
+
+            <!-- CONNECTION STATUS -->
+            <div class="connection-status">
+                <span class="status-dot"></span>
+                <span class="status-text">CONNECTED</span>
+            </div>
+
+            <!-- BOTTOM BUTTON AREA -->
+            <div class="bottom-area">
+                {% if insertcoin == 1 %}
+                <button id="insert_coin_button" class="btn insert-btn">
+                    <img src="Insert money1 copy.png" alt="Insert Money">
+                    <span>INSERT MONEY</span>
+                </button>
+                {% endif %}
+
+                {% if pausetime == 1 %}
+                <button id="pfunc" class="btn pause-btn">
+                    <img src="Pause time1 copy.png" alt="Pause Time">
+                    <span>PAUSE TIME</span>
+                </button>
+                {% endif %}
+
+                <button class="btn wifi-rates-btn">
+                    <img src="pngegg (98).png" alt="WiFi Rates">
+                    <span>WIFI RATES</span>
+                </button>
+
+                <button class="btn chatbox-btn">
+                    <img src="chatbox1 copy.png" alt="Chatbox">
+                    <span>CHATBOX</span>
+                </button>
+            </div>
+
+            <!-- FOOTER INFO -->
+            <div class="footer-info">
+                <p class="footer-text">THE BEST CONNECTIONS WIFI MACHINE</p>
+                <p class="footer-location">BARANGAY 3, ROXAS PALAWAN</p>
+                <p class="footer-credit">Powered by RUSSELL ANDREW GONZALES SERVERS</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
